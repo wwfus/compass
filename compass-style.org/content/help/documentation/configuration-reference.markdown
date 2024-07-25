@@ -4,12 +4,14 @@ layout: documentation
 classnames:
   - documentation
 ---
+
 # Ruby-based Configuration Reference
 
 The compass configuration file is a ruby file, which means that we can do some
 clever things if we want to. But don’t let it frighten you; it’s really quite
 easy to set up your project.
 <a name="basic-format"></a>
+
 ## Basic format
 
 Most configuration properties are a simple assignment to a configuration property.
@@ -20,27 +22,29 @@ For example:
 Most configuration properties have a value that is a “basic” type. There are three
 basic types that can be set to a property:
 
-* **String** – Text is surrounded by either single or double quotes.
+- **String** – Text is surrounded by either single or double quotes.
   E.g. `"this is a string"`
-* **Symbol** – A symbol starts with a colon and has no spaces in it.
+- **Symbol** – A symbol starts with a colon and has no spaces in it.
   Symbols are used to represent values where the set of possible values are limited.
   E.g. `:foo` or `:foo_bar_baz`
-* **Boolean** – `true` or `false`
+- **Boolean** – `true` or `false`
 
 There are two kinds of composite values:
 
-* **Array** – An Array is a comma delimited list of basic values surrounded by
+- **Array** – An Array is a comma delimited list of basic values surrounded by
   square brackets. E.g. `["one", "two", "three"]`.
-* **Hash** – A Hash is an association or mapping of one value to another.
+- **Hash** – A Hash is an association or mapping of one value to another.
   It is a comma delimited list of associations surrounded by curly brackets.
   An association is two values separated by `=>`. E.g. `{:foo => "aaa", :bar => "zzz"}`
 
 <a name="comments"></a>
+
 ## Comments
 
 Use the hash sign `#` to comment out everything from the hash sign to the end
 of the line.
 <a name="import-note-windows-users"></a>
+
 ## Import Note for Windows Users
 
 The backslash character (`\`) is a special character in a string delimited by
@@ -49,6 +53,7 @@ either use **single quotes** to delimit your strings or escape your backslash
 by doubling it like `"some\\path"`.
 
 <a name="loading-compass-plugins"></a>
+
 ## Loading Compass Plugins
 
 Compass relies on the ruby `require` mechanism to load other libraries of code.
@@ -62,12 +67,14 @@ Example:
     require 'susy'
 
 <a name="overriding-configuration-settings"></a>
+
 ## Overriding Configuration Settings
 
 When using the compass command line, configuration options that you set on the
 command line will override the corresponding settings in your configuration file.
 
 <a name="inspecting-configuration-settings-passed-via-the-command-line"></a>
+
 ## Inspecting Configuration Settings passed via the Command Line
 
 When using the compass command line, configuration options that you set on the
@@ -83,6 +90,7 @@ Then you can inspect the value like so:
 Values that are not set on the CLI will be `nil` even though they will have a default value
 later on.
 <a name="configuration-properties"></a>
+
 ## Configuration Properties
 
 <table>
@@ -326,6 +334,7 @@ later on.
 </table>
 
 <a name="configuration-functions"></a>
+
 ## Configuration Functions
 
 **`add_import_path`** – Call this function to add a path to the list of sass import
@@ -393,7 +402,7 @@ To disable the asset cache buster:
 more than once. Example:
 
     watch "images/**/*" do |project_dir, relative_path|
-      if File.exists?(File.join(project_dir, relative_path))
+      if File.exist?(File.join(project_dir, relative_path))
         puts "File size of #{relative_path} is: #{File.size(File.join(project_dir, relative_path))}"
       end
     end
@@ -401,12 +410,13 @@ more than once. Example:
 This code will be called if the file is added, updated, or removed. Be sure to check for existence
 to avoid crashing the watcher in the case where the file has been removed.
 <a name="callbacks"></a>
+
 ## Callbacks
 
 **`on_sprite_saved`** -- Pass this function a block of code that gets executed after a sprite is saved to disk. The block will be passed the filename. Can be invoked more then once. Example:
 
     on_sprite_saved do |filename|
-      post_process(filename) if File.exists?(filename)
+      post_process(filename) if File.exist?(filename)
     end
 
 **`on_sprite_generated`** -- Pass this function a block of code that gets executed after a sprite is generated but before its saved to disk. The block will be passed an instance of `ChunkyPNG::Image`. Can be invoked more then once. Example:
